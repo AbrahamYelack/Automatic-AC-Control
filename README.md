@@ -14,7 +14,7 @@ Functionality: The Arduino continuously receives and outputs raw IR signals to t
 ## IR Signal Sender (Send_IR_Signal.c)
 Purpose: Monitors room temperature using a DHT11 sensor and sends IR signals to control the AC based on temperature conditions.
 
-Dependencies: IRremote and DHT Sensor Library
+Dependencies: IRLib_HashRaw, IRLib_SendBase and DHT Sensor Library (All included in Libraries Zip)
 
 Setup: Connect the DHT11 temperature sensor to analog pin A0 and the IR emitter to an appropriate pin on the Arduino.
 
