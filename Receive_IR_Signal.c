@@ -2,41 +2,38 @@
    This file is used in the process of capturing the unique 
    IR signals for a given device. Data will be output which can
    then be stored for use in replicating the signals action using
-   an IR emitter.
+   an IR emitter. The IRLib was used for this process as the 
+   intended use for this file was to receive IR signals from AC
+   remotes which have much larger sized signals than e.g. a TV remote.
+   If you don't require IR signals for an AC remote, you can also use
+   the IRremote library.
 */
 
-#include <IRremote.h>
+#include <IRLibRecvPCI.h>
 
-// Specify PIN number of IR receiver and create IRecvPCI struct
-const int RECV_PIN = 3;
-IRrecv irrecv(RECV_PIN);
-decode_results results;
+// Initialise object to receive IR signal
+IRrecvPCI myReceiver(2);
 
-// Setup receiver in preperation to receive incoming signals
 void setup() {
-    // Tell Arduino to prepare for message exchanges
-    Serial.begin(9600);
-    // Delay for Arduino
-    while(!Serial.available()){};
-    delay(5000);
-    // Allow incoming signals to be processed
-    irrecv.enableIRIn();
-    
-    Serial.print("Ready to Receive IR Signals");
-
+  //change BAUD rate in accordance with the Arduino used
+  Serial.begin(9600);
+  delay(2000); 
+  while(!Serial){}
+  myReceiver.enableIRIn();
 }
 
-// Continuous loop to receive IR Signals and Print
+// This function continuously receives and outputs RAW IR signals to the monitor
 void loop() {
-
-    //Once a signal is received, it is decoded and stored in the results variable
-    if (irrecv.decode(&results)){
-        //Output code in Hexadecimal
-        Serial.println(results.value, HEX);
-        // Start receiving new signals
-        irrecv.resume();
+  
+  if(myReceiver.getResults()){
+    Serial.println(recvGlobal.recvLength, DEC);
+    for(bufIndex_t i = 1; i < recvGlobal.recvLength; i++){
+      Serial.print(recvGlobal.recvBuffer[i], DEC);
+      Serial.print(F(", "));
+      if(i%8==0) Serial.print(F("\n\t"));
     }
-
-    delay(1000);
+    Serial.println(F("1000};"));
+    myReceiver.enableIRIn();
+  }
 
 }
