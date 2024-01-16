@@ -1,6 +1,12 @@
 # Infrared Temperature-Controlled AC System
 
-This repository comprises Arduino code for managing an air conditioner (AC) based on room temperature through infrared (IR) signals. The project involves two components:
+## Overview
+
+This repository comprises Arduino code for managing an air conditioner (AC) based on room temperature through infrared (IR) signals.
+
+This code can be used in conjunction with an Arduino, IR Receiver/Emitter and DHT11 Temperature Sensor to control the state of any Air Conditioner. This brings practical value by efficiently managing energy consumption, reducing electricity costs, and enhancing user comfort. By automating the AC system based on temperature preferences, it ensures a consistent and comfortable environment without the need for constant manual adjustments. Suitable for both residential and commercial use, our project focuses on providing a straightforward and effective solution to optimize energy usage and improve overall convenience.
+
+The project involves two components:
 
 ## IR Signal Receiver (Receive_IR_Signal.c)
 Purpose: Captures unique IR signals from an AC remote using the IRLibRecvPCI library.
