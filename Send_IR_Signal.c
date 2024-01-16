@@ -5,10 +5,8 @@
   and can be sourced from the use of Receive_IR_Signal.c
 */
 
-// The IRremote library is used to send the IR signal and
-// the dht11 library is used to retrieve the temperature and
-// humidity readings from the DHT11 temperature sensor
-#include <IRremote.h>
+#include <IRLibSendBase.h>
+#include <IRLib_HashRaw.h>
 #include <dht11.h>
 #define DHT11PIN A0
 
@@ -17,7 +15,7 @@ char err = 2;
 dht11 DHT11;
 IRsendRaw irsend;
 
-// Replace these variables value with your unique 
+// Replace these variable values with your unique 
 // on and off signal codes
 #define RAW_DATA_LENGTH_ON 350
 uint16_t rawDataOn[RAW_DATA_LENGTH] = { /*Paste Raw Data Here (ON) */ }
